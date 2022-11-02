@@ -19,6 +19,11 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
           // Building Docker images
         stage('Building image') {
             steps{
@@ -35,11 +40,6 @@ pipeline {
                     sh 'docker push 767421511420.dkr.ecr.us-east-1.amazonaws.com/geolocation_ecr_rep:latest'
                 }
             }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+        }   
     }
 }
